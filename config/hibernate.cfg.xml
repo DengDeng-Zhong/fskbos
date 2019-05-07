@@ -7,6 +7,10 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/bos</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
       <mapping resource="gq/dengbo/bos/model/User.hbm.xml"/>
+      <mapping resource="gq/dengbo/bos/model/Decidedzone.hbm.xml"/>
+      <mapping resource="gq/dengbo/bos/model/Region.hbm.xml"/>
+      <mapping resource="gq/dengbo/bos/model/Staff.hbm.xml"/>
+      <mapping resource="gq/dengbo/bos/model/Subarea.hbm.xml"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

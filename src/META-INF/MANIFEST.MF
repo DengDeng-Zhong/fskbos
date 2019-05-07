@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Class-Path: asm-3.3.jar jta-1.1.jar hibernate3.jar antlr-2.7.6.jar dom
+ 4j-1.6.1.jar ognl-3.0.19.jar asm-tree-3.3.jar log4j-api-2.3.jar commo
+ ns-io-2.2.jar log4j-core-2.3.jar asm-commons-3.3.jar slf4j-api-1.6.1.
+ jar commons-lang3-3.2.jar freemarker-2.3.22.jar xwork-core-2.3.33.jar
+  javassist-3.12.0.GA.jar slf4j-log4j12-1.7.2.jar struts2-core-2.3.33.
+ jar commons-collections-3.1.jar spring-tx-4.0.5.RELEASE.jar commons-f
+ ileupload-1.3.2.jar spring-aop-4.0.5.RELEASE.jar spring-orm-4.0.5.REL
+ EASE.jar spring-web-4.0.5.RELEASE.jar spring-core-4.0.5.RELEASE.jar s
+ pring-jdbc-4.0.5.RELEASE.jar spring-test-4.0.5.RELEASE.jar spring-bea
+ ns-4.0.5.RELEASE.jar mysql-connector-java-5.1.37.jar spring-aspects-4
+ .0.5.RELEASE.jar spring-context-4.0.5.RELEASE.jar struts2-spring-plug
+ in-2.3.33.jar spring-expression-4.0.5.RELEASE.jar hibernate-jpa-2.0-a
+ pi-1.0.1.Final.jar com.springsource.org.aopalliance-1.0.0.jar com.spr
+ ingsource.org.apache.log4j-1.2.15.jar com.springsource.com.mchange.v2
+ .c3p0-0.9.1.2.jar com.springsource.org.apache.commons.logging-1.1.1.j
+ ar com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar
+Main-Class: 
+

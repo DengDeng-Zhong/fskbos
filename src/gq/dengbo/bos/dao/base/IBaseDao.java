@@ -28,5 +28,19 @@ public interface IBaseDao<T> {
      * IBaseDao:公共的查找方法
      * */
     T findById(Serializable id);
+
+    /**
+     * 公共的更新方法
+     * @param hql
+     * @param objects
+     */
+    void executeUpdate(String hql, Object... objects );
+
+    /**
+     *
+     * @param queryName 在映射文件中配置的名字
+     * @param objects
+     */
+    void executeUpdateByQueryName(String queryName, Object... objects );
 }
 

@@ -66,13 +66,13 @@ input[type=password] {
 					<div id="idInputLine" class="loginFormIpt showPlaceholder"
 						style="margin-top: 5px;">
 						<input id="loginform:idInput" type="text" name="username"
-							class="loginFormTdIpt" maxlength="50" />
+							class="loginFormTdIpt" maxlength="50" placeholder="请输入账号" />
 						<label for="idInput" class="placeholder" id="idPlaceholder">帐号：</label>
 					</div>
 					<div class="forgetPwdLine"></div>
 					<div id="pwdInputLine" class="loginFormIpt showPlaceholder">
 						<input id="loginform:pwdInput" class="loginFormTdIpt" type="password"
-							name="password" value="" />
+							name="password" value="" placeholder="请输入密码"/>
 						<label for="pwdInput" class="placeholder" id="pwdPlaceholder">密码：</label>
 					</div>
 					<div class="loginFormIpt loginFormIptWiotTh"

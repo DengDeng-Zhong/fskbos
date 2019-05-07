@@ -54,4 +54,12 @@ userDao.delete(entity);
     public User login(String username, String password) {
         return userDao.find(username, MD5Utils.text2md5(password));
     }
+
+    @Override
+    public void modifyPassword(String newPwd, String userId) {
+        /*String hql = "UPDATE User SET password = ? WHERE id = ?";
+        userDao.executeUpdate(hql,MD5Utils.text2md5(newPwd), userId);*/
+
+        userDao.executeUpdateByQueryName("updatePwd", MD5Utils.text2md5(newPwd), userId);
+    }
 }

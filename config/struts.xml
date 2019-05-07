@@ -16,7 +16,8 @@
             </interceptor>
             <!-- 声明一个拦截器组 -->
             <interceptor-stack name="myDefaultStack">
-                <interceptor-ref name="BOSLoginInterceptor"/>
+<!--                为了测试方便先把登录拦截器关闭-->
+<!--                <interceptor-ref name="BOSLoginInterceptor"/>-->
                 <interceptor-ref name="defaultStack"/>
             </interceptor-stack>
         </interceptors>
@@ -26,7 +27,7 @@
 
         <!-- 配置全局的结果视图 -->
         <global-results>
-            <result name="login">/login.jsp</result>
+            <result name="login" type="redirect">/login.jsp</result>
         </global-results>
 
         <!-- 配置需要进行权限控制的页面访问的规则 -->
@@ -37,8 +38,11 @@
         <action name="userAction_*" class="gq.dengbo.bos.web.action.UserAction" method="{1}">
             <result name="home">/WEB-INF/pages/common/index.jsp</result>
             <result name="loginfailure">/login.jsp</result>
-
         </action>
 
+        <!-- 取派员模块 -->
+        <action name="staffAction_*" class="gq.dengbo.bos.web.action.StaffAction" method="{1}">
+            <result name="success">/WEB-INF/pages/base/staff.jsp</result>
+        </action>
     </package>
 </struts>

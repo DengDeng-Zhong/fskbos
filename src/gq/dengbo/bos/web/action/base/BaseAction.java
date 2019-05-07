@@ -1,4 +1,4 @@
-package gq.dengbo.bos.web.action;
+package gq.dengbo.bos.web.action.base;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;

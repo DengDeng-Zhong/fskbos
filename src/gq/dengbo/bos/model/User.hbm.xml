@@ -17,4 +17,5 @@
         <property name="telephone" column="telephone"/>
         <property name="remark" column="remark"/>
     </class>
+    <query name="updatePwd">UPDATE User SET password = ? WHERE id = ?</query>
 </hibernate-mapping>

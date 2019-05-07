@@ -9,5 +9,7 @@ public interface IUserService extends IBaseService<User> {
 
     User login(String username, String password);
 
+    void modifyPassword(String newPwd, String userId);
+
 
 }
