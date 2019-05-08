@@ -32,12 +32,42 @@ public class StaffAction extends BaseAction<Staff> {
 
     @Override
     public String update() {
+        //【游离/托管状态 session没有缓存 有id】
+        System.out.println("表单提交的:"+getModel());
+
+        //1.根据id从数据库获取数据【持久状态 session有缓存，有id】
+        Staff staff = staffService.findById(getModel().getId());
+        System.out.println("数据库的:"+staff);
+        //2.更新数据库的数据
+        staff.setName(getModel().getName());
+        staff.setTelephone(getModel().getTelephone());
+        staff.setStation(getModel().getStation());
+        staff.setHaspda(getModel().getHaspda());
+        staff.setStandard(getModel().getStandard());
+        System.out.println("数据库的:"+staff);
+
+        staffService.update(staff);
         return null;
     }
 
+    //==================删除取派员==================
+    private String ids;
+
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
+
     @Override
-    public String delete() {
-        return null;
+    public String delete() throws IOException {
+        //1.获取删除的id
+
+        //2.调用service
+        staffService.deleteBatch(ids);
+        System.out.println(ids);
+        //3.响应
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.getWriter().write("success");
+        return NONE;
     }
 
     @Override
@@ -76,12 +106,12 @@ public class StaffAction extends BaseAction<Staff> {
         //返回json数据
 
         JsonConfig config = new JsonConfig();
-        config.setExcludes(new String[]{"currentPage","pageSize","detachedCriteria"});
+        config.setExcludes(new String[]{"currentPage", "pageSize", "detachedCriteria"});
 
-        JSONObject jsonObject =JSONObject.fromObject(pb,config);
+        JSONObject jsonObject = JSONObject.fromObject(pb, config);
         jsonObject.toString();
         HttpServletResponse response = ServletActionContext.getResponse();
-        response.setHeader("content-type","text/json;charset=utf-8");
+        response.setHeader("content-type", "text/json;charset=utf-8");
         response.getWriter().write(jsonObject.toString());
     }
 

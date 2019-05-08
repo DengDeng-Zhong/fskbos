@@ -11,6 +11,8 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <%  response.sendRedirect("/login.jsp");  %>
+<%--location.href="${req.contextPath}pages/common/index.jsp”--%>
+
   </body>
 </html>

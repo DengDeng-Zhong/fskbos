@@ -3,6 +3,7 @@ package gq.dengbo.bos.web.action.base;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -43,7 +44,7 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
     //修改数据
     public abstract String update();
     //删除数据
-    public abstract String delete();
+    public abstract String delete() throws IOException;
     //查找数据
     public abstract String find();
 

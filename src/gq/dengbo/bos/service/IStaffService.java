@@ -11,4 +11,11 @@ public interface IStaffService extends IBaseService<Staff> {
      * @param pb
      */
     void pageQuery(PageBean<Staff> pb);
+
+    /**
+     * 批量删除取派员
+     *
+     * @param ids 【001,002】 以逗号隔开
+     */
+    void deleteBatch(String ids);
 }

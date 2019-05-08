@@ -27,6 +27,7 @@ public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffSe
 
     @Override
     public void update(Staff entity) {
+        //实际可以不写
         staffDao.update(entity);
     }
 
@@ -52,5 +53,21 @@ public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffSe
      */
     public void pageQuery(PageBean<Staff> pb) {
         staffDao.pageQuery(pb);
+    }
+
+    /**
+     * 批量删除取派员
+     *
+     * @param ids 【001,002】 以逗号隔开
+     */
+    @Override
+    public void deleteBatch(String ids) {
+        String hql = "UPDATE Staff SET deltag = ? WHERE id = ?";
+
+        //拆分id
+        String[] idsArr = ids.split(",");
+        for (String id : idsArr) {
+            staffDao.executeUpdate(hql, "1", id);
+        }
     }
 }
