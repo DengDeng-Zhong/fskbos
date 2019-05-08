@@ -1,7 +1,10 @@
 package gq.dengbo.bos.dao.base;
 
+import gq.dengbo.bos.model.PageBean;
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
@@ -98,5 +101,32 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
             System.out.println(",");
         }
 
+    }
+
+    /**
+     * 公共的分页
+     *
+     * @param pb
+     */
+    @Override
+    public void pageQuery(PageBean<T> pb) {
+
+        //1.查询总记录数
+        //获取离线的查询对象
+        DetachedCriteria dc = pb.getDetachedCriteria();
+        //设置查询总记录数条件
+        dc.setProjection(Projections.rowCount());
+
+        List<Long> list = (List<Long>) getHibernateTemplate().findByCriteria(dc);
+        Long total = list.get(0);
+
+        pb.setTotal(total.intValue());
+
+        // 2.查询分页数据
+        dc.setProjection(null);
+        int start = (pb.getCurrentPage() - 1) * pb.getPageSize();
+        int length = pb.getPageSize();
+        List<T> rows = (List<T>) getHibernateTemplate().findByCriteria(dc, start, length);
+        pb.setRows(rows);
     }
 }

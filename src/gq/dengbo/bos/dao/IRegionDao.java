@@ -9,6 +9,4 @@ import java.util.List;
 
 public interface IRegionDao extends IBaseDao<Region> {
 
-
-    void pageQuery(PageBean<Region> pb);
 }

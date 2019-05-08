@@ -1,5 +1,6 @@
 package gq.dengbo.bos.dao.base;
 
+import gq.dengbo.bos.model.PageBean;
 import gq.dengbo.bos.model.Region;
 
 import java.io.Serializable;
@@ -46,5 +47,11 @@ public interface IBaseDao<T> {
     void executeUpdateByQueryName(String queryName, Object... objects );
 
     void saveAll(List<T> list);
+
+    /**
+     * 公共的分页
+     * @param pb
+     */
+    void pageQuery(PageBean<T> pb);
 }
 
