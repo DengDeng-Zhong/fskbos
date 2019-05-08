@@ -39,7 +39,7 @@ public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffSe
         System.out.println("数据库的:"+staff);
 
         //实际可以不写
-        staffDao.update(entity);
+        //staffDao.update(entity);
     }
 
     @Override

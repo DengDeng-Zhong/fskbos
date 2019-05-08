@@ -28,8 +28,7 @@ public class UserAction extends BaseAction<User> {
         HttpServletRequest request = ServletActionContext.getRequest();
         String serverCheckcode = (String) request.getSession().getAttribute("key");
         String clientCheckcode = request.getParameter("checkcode");
-        logger.info("serverCheckcode:{1}" + serverCheckcode);
-        logger.warning("test");
+        System.out.println("serverCheckcode:" + serverCheckcode);
         System.out.println("clientCheckcode:" + clientCheckcode);
         if (serverCheckcode.equalsIgnoreCase(clientCheckcode)) {
             //2.调用service

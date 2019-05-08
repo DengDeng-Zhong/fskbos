@@ -58,11 +58,11 @@
                 '${pageContext.request.contextPath }/staffAction_delete.action',
                 {ids: ids},
                 function (data) {
-                    alert(data);
                     if (data == 'success') {
-                        $.messager.alert('提示', '作废成功', 'info')
+                        $.messager.alert('提示', '作废成功', 'info');
+                        $('#grid').datagrid('reload');
                     } else {
-                        $.messager.alert('提示', '作废失败', 'info')
+                        $.messager.alert('提示', '作废失败', 'info');
                     }
                 }
             );
@@ -206,6 +206,7 @@
 
                     //提交表单
                     $("#addStaffForm").submit();
+                    $('#grid').datagrid('reload');
                 } else {
                     $.messager.alert('提示', '表单数据格式不正确', 'error');
                 }
@@ -220,6 +221,7 @@
                 if (v) {
                     //提交表单
                     $("#editStaffForm").submit();
+                    $('#grid').datagrid('reload');
                 } else {
                     $.messager.alert('提示', '表单数据格式不正确', 'error');
                 }
@@ -261,7 +263,7 @@
                 <!-- TODO 这里完善收派员添加 table -->
                 <tr>
                     <td>取派员编号</td>
-                    <td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
+                    <td><input type="text" name="id" class="easyui-validatebox" required="true" /></td>
                 </tr>
                 <tr>
                     <td>姓名</td>
@@ -310,7 +312,7 @@
                 <!-- TODO 这里完善收派员添加 table -->
                 <tr>
                     <td>取派员编号</td>
-                    <td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
+                    <td><input type="text" name="id" class="easyui-validatebox" required="true" readonly="true"/></td>
                 </tr>
                 <tr>
                     <td>姓名</td>
