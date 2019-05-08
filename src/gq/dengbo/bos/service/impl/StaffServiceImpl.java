@@ -1,6 +1,7 @@
 package gq.dengbo.bos.service.impl;
 
 import gq.dengbo.bos.dao.IStaffDao;
+import gq.dengbo.bos.model.PageBean;
 import gq.dengbo.bos.model.Staff;
 import gq.dengbo.bos.service.IStaffService;
 import gq.dengbo.bos.service.base.BaseServiceImpl;
@@ -14,6 +15,7 @@ import java.util.List;
 @Service
 @Transactional
 public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffService {
+
 
     @Autowired
     private IStaffDao staffDao;
@@ -41,5 +43,14 @@ public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffSe
     @Override
     public Staff findById(Serializable id) {
         return staffDao.findById(id);
+    }
+
+    /**
+     * 分页查询
+     *
+     * @param pb
+     */
+    public void pageQuery(PageBean<Staff> pb) {
+        staffDao.pageQuery(pb);
     }
 }
