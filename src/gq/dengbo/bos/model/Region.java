@@ -11,6 +11,16 @@ public class Region {
     private String shortcode;
     private String citycode;
 
+    public Region() {}
+
+    public Region(String id, String province, String city, String district, String postcode) {
+        this.id = id;
+        this.province = province;
+        this.city = city;
+        this.district = district;
+        this.postcode = postcode;
+    }
+
     public String getId() {
         return id;
     }

@@ -1,5 +1,7 @@
 package gq.dengbo.bos.dao.base;
 
+import gq.dengbo.bos.model.Region;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -42,5 +44,7 @@ public interface IBaseDao<T> {
      * @param objects
      */
     void executeUpdateByQueryName(String queryName, Object... objects );
+
+    void saveAll(List<T> list);
 }
 

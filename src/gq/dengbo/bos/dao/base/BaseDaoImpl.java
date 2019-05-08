@@ -35,10 +35,6 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
         return hibernateTemplate;
     }
 
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
-
     @Override
     public void save(T entity) {
         hibernateTemplate.save(entity);
@@ -93,5 +89,14 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
         }
         //执行
         query.executeUpdate();
+    }
+
+    @Override
+    public void saveAll(List<T> list) {
+        for (T t : list) {
+            hibernateTemplate.saveOrUpdate(t);
+            System.out.println(",");
+        }
+
     }
 }
