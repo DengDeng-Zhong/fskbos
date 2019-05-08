@@ -27,6 +27,17 @@ public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffSe
 
     @Override
     public void update(Staff entity) {
+
+        //1.根据id从数据库获取数据【持久状态 session有缓存，有id】
+        Staff staff = staffDao.findById(entity.getId());
+        //2.更新数据库的数据
+        staff.setName(entity.getName());
+        staff.setTelephone(entity.getTelephone());
+        staff.setStation(entity.getStation());
+        staff.setHaspda(entity.getHaspda());
+        staff.setStandard(entity.getStandard());
+        System.out.println("数据库的:"+staff);
+
         //实际可以不写
         staffDao.update(entity);
     }

@@ -35,18 +35,7 @@ public class StaffAction extends BaseAction<Staff> {
         //【游离/托管状态 session没有缓存 有id】
         System.out.println("表单提交的:"+getModel());
 
-        //1.根据id从数据库获取数据【持久状态 session有缓存，有id】
-        Staff staff = staffService.findById(getModel().getId());
-        System.out.println("数据库的:"+staff);
-        //2.更新数据库的数据
-        staff.setName(getModel().getName());
-        staff.setTelephone(getModel().getTelephone());
-        staff.setStation(getModel().getStation());
-        staff.setHaspda(getModel().getHaspda());
-        staff.setStandard(getModel().getStandard());
-        System.out.println("数据库的:"+staff);
-
-        staffService.update(staff);
+        staffService.update(getModel());
         return null;
     }
 
