@@ -73,6 +73,9 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
     //查找数据
     public abstract String find();
 
+    //返回列表数据
+//    public abstract String list();
+
     /**
      * 返回json数据给客户端
      * @param obj 转json的对象

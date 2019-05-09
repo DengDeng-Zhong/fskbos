@@ -6,6 +6,18 @@ public class Decidedzone {
     private String id;
     private String name;
 
+    private Staff staff;
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
+
+
+
     public String getId() {
         return id;
     }
@@ -34,5 +46,13 @@ public class Decidedzone {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Decidedzone{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

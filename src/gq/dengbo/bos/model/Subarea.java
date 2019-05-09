@@ -12,6 +12,9 @@ public class Subarea {
     private String endnum;
     private String single;
     private String position;
+    public String getSubareaId(){
+        return id;
+    }
 
     //定区
     private Decidedzone decidedzone;
