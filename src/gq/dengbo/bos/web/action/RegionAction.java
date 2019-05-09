@@ -1,28 +1,17 @@
 package gq.dengbo.bos.web.action;
 
-import com.sun.istack.internal.logging.Logger;
-import gq.dengbo.bos.model.PageBean;
 import gq.dengbo.bos.model.Region;
-import gq.dengbo.bos.model.Staff;
-import gq.dengbo.bos.model.User;
 import gq.dengbo.bos.service.IRegionService;
-import gq.dengbo.bos.service.IUserService;
+import gq.dengbo.bos.utils.PinYin4jUtils;
 import gq.dengbo.bos.web.action.base.BaseAction;
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
+import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.struts2.ServletActionContext;
-import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,8 +63,21 @@ public class RegionAction extends BaseAction<Region>{
             String district = row.getCell(3).getStringCellValue();
             String postcode = row.getCell(4).getStringCellValue();
 
+            //根据中文生成城市编码
+            String citycode = StringUtils.join(PinYin4jUtils.stringToPinyin(city), "");
+
+            //根据中文生成简码
+            String cityTmp = city.substring(0, city.length() - 1);
+            String districtTmp = district.substring(0, district.length() - 1);
+            String[] cityStrs = PinYin4jUtils.getHeadByString(cityTmp);
+            String[] districtStrs = PinYin4jUtils.getHeadByString(districtTmp);
+            String shortcode = StringUtils.join(cityStrs, "") + StringUtils.join(districtStrs, "");
+
+
             //封装成Region对象
             Region region = new Region(id, province, city, district, postcode);
+            region.setCitycode(citycode);
+            region.setShortcode(shortcode);
             regions.add(region);
 
         }
@@ -83,20 +85,10 @@ public class RegionAction extends BaseAction<Region>{
         //调用service
         regionService.saveAll(regions);
 
-        return SUCCESS;
+        resopnseStr("success");
+        return NONE;
     }
 
-    //=============分页查询返回json数据=========
-    private int page;
-    private int rows;
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
 
     public void pageQuery() throws IOException {
         /*
@@ -104,25 +96,22 @@ public class RegionAction extends BaseAction<Region>{
             2.调用service,参数里传一个pageBean
             3.返回json数据
          */
-        PageBean<Region> pb = new PageBean<Region>();
         pb.setCurrentPage(page);
         pb.setPageSize(rows);
-        DetachedCriteria dc = DetachedCriteria.forClass(Region.class);
-        pb.setDetachedCriteria(dc);
-
         regionService.pageQuery(pb);
-
-        System.out.println(pb);
+//        System.out.println(pb);
 
         //返回json数据
+        resopnseJson(pb,new String[]{"currentPage", "pageSize", "detachedCriteria"});
 
-        JsonConfig config = new JsonConfig();
-        config.setExcludes(new String[]{"currentPage", "pageSize", "detachedCriteria"});
+    }
 
-        JSONObject jsonObject = JSONObject.fromObject(pb, config);
-        jsonObject.toString();
-        HttpServletResponse response = ServletActionContext.getResponse();
-        response.setHeader("content-type", "text/json;charset=utf-8");
-        response.getWriter().write(jsonObject.toString());
+    public void listJson() throws IOException {
+        /*
+            1.查询所有区域
+            2.返回json数据
+         */
+        List<Region> regions = regionService.findAll();
+        resopnseJson(regions,new String[]{});
     }
 }

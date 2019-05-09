@@ -1,6 +1,7 @@
 package gq.dengbo.bos.model;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Region {
     private String id;
@@ -11,6 +12,17 @@ public class Region {
     private String shortcode;
     private String citycode;
 
+    //一个区域对应多个分区
+    private Set<Subarea> subareas;
+
+    public Set<Subarea> getSubareas() {
+        return subareas;
+    }
+
+    public void setSubareas(Set<Subarea> subareas) {
+        this.subareas = subareas;
+    }
+
     public Region() {}
 
     public Region(String id, String province, String city, String district, String postcode) {
@@ -19,6 +31,10 @@ public class Region {
         this.city = city;
         this.district = district;
         this.postcode = postcode;
+    }
+
+    public String getName(){
+        return province+city+district;
     }
 
     public String getId() {
@@ -94,5 +110,18 @@ public class Region {
     @Override
     public int hashCode() {
         return Objects.hash(id, province, city, district, postcode, shortcode, citycode);
+    }
+
+    @Override
+    public String toString() {
+        return "Region{" +
+                "id='" + id + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", postcode='" + postcode + '\'' +
+                ", shortcode='" + shortcode + '\'' +
+                ", citycode='" + citycode + '\'' +
+                '}';
     }
 }

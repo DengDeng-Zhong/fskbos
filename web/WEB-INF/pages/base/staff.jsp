@@ -255,7 +255,8 @@
     </div>
 
     <div region="center" style="overflow:auto;padding:5px;" border="false">
-        <form id="addStaffForm" action="${pageContext.request.contextPath }/staffAction_save.action">
+        <form id="addStaffForm" action="${pageContext.request.contextPath }/staffAction_save.action"
+            method="post">
             <table class="table-edit" width="80%" align="center">
                 <tr class="title">
                     <td colspan="2">收派员信息</td>
@@ -304,7 +305,8 @@
     </div>
 
     <div region="center" style="overflow:auto;padding:5px;" border="false">
-        <form id="editStaffForm" action="${pageContext.request.contextPath }/staffAction_update.action">
+        <form id="editStaffForm" action="${pageContext.request.contextPath }/staffAction_update.action"
+        method="post">
             <table class="table-edit" width="80%" align="center">
                 <tr class="title">
                     <td colspan="2">收派员信息</td>

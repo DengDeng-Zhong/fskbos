@@ -2,6 +2,9 @@ package gq.dengbo.bos.model;
 
 import java.util.Objects;
 
+/**
+ * 分区
+ */
 public class Subarea {
     private String id;
     private String addresskey;
@@ -9,6 +12,16 @@ public class Subarea {
     private String endnum;
     private String single;
     private String position;
+
+    private Region region;
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
 
     public String getId() {
         return id;
@@ -74,5 +87,17 @@ public class Subarea {
     @Override
     public int hashCode() {
         return Objects.hash(id, addresskey, startnum, endnum, single, position);
+    }
+
+    @Override
+    public String toString() {
+        return "Subarea{" +
+                "id='" + id + '\'' +
+                ", addresskey='" + addresskey + '\'' +
+                ", startnum='" + startnum + '\'' +
+                ", endnum='" + endnum + '\'' +
+                ", single='" + single + '\'' +
+                ", position='" + position + '\'' +
+                '}';
     }
 }
