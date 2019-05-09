@@ -138,7 +138,16 @@
             field: 'single',
             title: '单双号',
             width: 100,
-            align: 'center'
+            align: 'center',
+            formatter: function (data, row, index) {
+            if (data == "0") {
+                return "全部";
+            } else if(data == "1") {
+                return "单";
+            }else{
+                return "双";
+            }
+        }
         }, {
             field: 'position',
             title: '位置',
@@ -157,10 +166,10 @@
                 border: true,
                 rownumbers: true,
                 striped: true,
-                pageList: [30, 50, 100],
+                pageList: [10, 15, 20],
                 pagination: true,
                 toolbar: toolbar,
-                url: "json/subarea.json",
+                url: "${pageContext.request.contextPath}/subareaAction_pageQuery.action",
                 idField: 'id',
                 columns: columns,
                 onDblClickRow: doDblClickRow

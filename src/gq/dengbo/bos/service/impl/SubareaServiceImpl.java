@@ -1,6 +1,7 @@
 package gq.dengbo.bos.service.impl;
 
 import gq.dengbo.bos.dao.ISubareaDao;
+import gq.dengbo.bos.model.PageBean;
 import gq.dengbo.bos.model.Subarea;
 import gq.dengbo.bos.service.ISubareaService;
 import gq.dengbo.bos.service.base.BaseServiceImpl;
@@ -16,6 +17,11 @@ public class SubareaServiceImpl extends BaseServiceImpl<Subarea> implements ISub
 
     @Autowired
     private ISubareaDao subareaDao;
+
+    @Override
+    public void pageQuery(PageBean<Subarea> pb) {
+        subareaDao.pageQuery(pb);
+    }
 
     @Override
     public void save(Subarea entity) {

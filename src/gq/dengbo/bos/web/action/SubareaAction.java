@@ -17,8 +17,6 @@ public class SubareaAction extends BaseAction<Subarea> {
         System.out.println("数据1:"+getModel());
         System.out.println("数据2:"+getModel().getRegion());
 
-
-
         subareaService.save(getModel());
         return SUCCESS;
     }
@@ -36,5 +34,16 @@ public class SubareaAction extends BaseAction<Subarea> {
     @Override
     public String find() {
         return null;
+    }
+
+    public void pageQuery() throws IOException {
+        pb.setCurrentPage(page);
+        pb.setPageSize(rows);
+
+        subareaService.pageQuery(pb);
+
+        // 获取数据时,把分区Subarea的Region的加载方式改成懒加载
+        resopnseJson(pb, new String[]{"currentPage", "pageSize", "detachedCriteria","subareas"});
+
     }
 }

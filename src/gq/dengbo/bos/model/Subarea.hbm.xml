@@ -16,6 +16,7 @@
 
         <!-- 多对一关系映射 -->
         <many-to-one name="region"
+                     lazy="false"
                      class="gq.dengbo.bos.model.Region"
                      column="region_id" >
 
