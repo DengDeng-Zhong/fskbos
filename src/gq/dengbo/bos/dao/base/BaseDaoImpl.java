@@ -123,7 +123,8 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
         pb.setTotal(total.intValue());
 
         // 2.查询分页数据
-        dc.setProjection(null);
+        dc.setProjection(null);//把之前的条件清空
+        dc.setResultTransformer(DetachedCriteria.ROOT_ENTITY);//重置hql
         int start = (pb.getCurrentPage() - 1) * pb.getPageSize();
         int length = pb.getPageSize();
         List<T> rows = (List<T>) getHibernateTemplate().findByCriteria(dc, start, length);
