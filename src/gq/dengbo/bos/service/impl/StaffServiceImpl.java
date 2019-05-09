@@ -5,6 +5,8 @@ import gq.dengbo.bos.model.PageBean;
 import gq.dengbo.bos.model.Staff;
 import gq.dengbo.bos.service.IStaffService;
 import gq.dengbo.bos.service.base.BaseServiceImpl;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,12 +49,10 @@ public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffSe
         staffDao.delete(entity);
     }
 
-    @Override
     public List<Staff> findAll() {
         return staffDao.findAll();
     }
 
-    @Override
     public Staff findById(Serializable id) {
         return staffDao.findById(id);
     }
@@ -71,7 +71,6 @@ public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffSe
      *
      * @param ids 【001,002】 以逗号隔开
      */
-    @Override
     public void deleteBatch(String ids) {
         String hql = "UPDATE Staff SET deltag = ? WHERE id = ?";
 
@@ -80,5 +79,16 @@ public class StaffServiceImpl extends BaseServiceImpl<Staff> implements IStaffSe
         for (String id : idsArr) {
             staffDao.executeUpdate(hql, "1", id);
         }
+    }
+
+    /**
+     * 查找所有在职的员工
+     * @return 集合
+     */
+    public List<Staff> findAllWithNoDel() {
+        //离线查询对象
+        DetachedCriteria dc = DetachedCriteria.forClass(Staff.class);
+        dc.add(Restrictions.eq("deltag","0"));
+        return staffDao.findAllByDetachedCriteria(dc);
     }
 }

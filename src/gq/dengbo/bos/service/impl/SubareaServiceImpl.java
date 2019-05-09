@@ -5,6 +5,8 @@ import gq.dengbo.bos.model.PageBean;
 import gq.dengbo.bos.model.Subarea;
 import gq.dengbo.bos.service.ISubareaService;
 import gq.dengbo.bos.service.base.BaseServiceImpl;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +38,12 @@ public class SubareaServiceImpl extends BaseServiceImpl<Subarea> implements ISub
     @Override
     public void delete(Subarea entity) {
 
+    }
+
+    public List<Subarea> findAllWithUnbind() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Subarea.class);
+        dc.add(Restrictions.isNull("decidedzone"));
+        return subareaDao.findAllByDetachedCriteria(dc);
     }
 
     @Override

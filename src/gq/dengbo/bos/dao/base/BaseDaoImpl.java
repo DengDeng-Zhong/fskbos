@@ -61,6 +61,12 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
         return (List<T>) this.hibernateTemplate.find(hql);
     }
 
+    public List<T> findAllByDetachedCriteria(DetachedCriteria dc) {
+
+
+        return (List<T>) this.hibernateTemplate.findByCriteria(dc);
+    }
+
     @Override
     public T findById(Serializable id) {
         return this.hibernateTemplate.get(entityClass, id);

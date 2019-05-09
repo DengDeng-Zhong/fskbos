@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 public class StaffAction extends BaseAction<Staff> {
@@ -75,5 +76,11 @@ public class StaffAction extends BaseAction<Staff> {
 
     }
 
+    public void listJson() throws IOException {
 
+        //在职员工
+        List<Staff> list = staffService.findAllWithNoDel();
+        System.out.println(list.size());
+        resopnseJson(list,new String[]{"telephone","haspda","deltag","station","standard"});
+    }
 }

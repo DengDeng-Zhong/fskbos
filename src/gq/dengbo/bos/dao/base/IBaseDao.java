@@ -2,6 +2,7 @@ package gq.dengbo.bos.dao.base;
 
 import gq.dengbo.bos.model.PageBean;
 import gq.dengbo.bos.model.Region;
+import org.hibernate.criterion.DetachedCriteria;
 
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +27,12 @@ public interface IBaseDao<T> {
      * IBaseDao:公共的查找方法
      * */
     List<T> findAll();
+
+    /**
+     * 查找表的所有数据
+     * @return
+     */
+    List<T> findAllByDetachedCriteria(DetachedCriteria dc);
 
     /**
      * IBaseDao:公共的查找方法

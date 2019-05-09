@@ -13,6 +13,17 @@ public class Subarea {
     private String single;
     private String position;
 
+    //定区
+    private Decidedzone decidedzone;
+
+    public Decidedzone getDecidedzone() {
+        return decidedzone;
+    }
+
+    public void setDecidedzone(Decidedzone decidedzone) {
+        this.decidedzone = decidedzone;
+    }
+
     private Region region;
 
     public Region getRegion() {

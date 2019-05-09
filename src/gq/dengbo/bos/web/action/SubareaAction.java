@@ -126,4 +126,11 @@ public class SubareaAction extends BaseAction<Subarea> {
         workbook.write(os);
         os.close();
     }
+
+    public void listJson() throws IOException {
+        //未绑定过分区数据
+        List<Subarea> list = subareaService.findAllWithUnbind();
+
+        resopnseJson(list,new String[]{"decidedzone","region"});
+    }
 }
