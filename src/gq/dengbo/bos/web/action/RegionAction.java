@@ -102,7 +102,7 @@ public class RegionAction extends BaseAction<Region>{
 //        System.out.println(pb);
 
         //返回json数据
-        resopnseJson(pb,new String[]{"currentPage", "pageSize", "detachedCriteria"});
+        resopnseJson(pb,new String[]{"currentPage", "pageSize", "detachedCriteria","subareas"});
 
     }
 
@@ -112,6 +112,9 @@ public class RegionAction extends BaseAction<Region>{
             2.返回json数据
          */
         List<Region> regions = regionService.findAll();
-        resopnseJson(regions,new String[]{});
+        /**
+         * 转json时不要转subareas字段,否则会出先死循环
+         */
+        resopnseJson(regions,new String[]{"subareas"});
     }
 }
