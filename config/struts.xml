@@ -57,5 +57,9 @@
             <result name="success">/WEB-INF/pages/base/decidedzone.jsp</result>
         </action>
 
+        <!-- 业务通知单模块 -->
+        <action name="noticebillAction_*" class="gq.dengbo.bos.web.action.NoticebillAction" method="{1}">
+            <result name="success">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+        </action>
     </package>
 </struts>

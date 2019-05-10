@@ -16,4 +16,6 @@ public interface CustomerService {
 
 	// 将未关联定区客户关联到定区上
 	public void assignCustomersToDecidedZone(Integer[] customerIds, String decidedZoneId);
+
+	public Customer findCustomerByTel(String tel);
 }

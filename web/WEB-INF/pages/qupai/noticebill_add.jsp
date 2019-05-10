@@ -37,6 +37,27 @@
 				$('#noticebillForm').submit();
 			}
 		});
+
+
+		//监听来电电话标签失去焦点的事件
+		$("input[name=telephone]").blur(function () {
+			var tel = $("input[name=telephone]").val();
+			console.log(tel+'');
+
+			url = '${pageContext.request.contextPath}/noticebillAction_findCustomerByTel.action';
+			$.post(url,{tel:tel},function (data) {
+
+				$("input[name=customerId]").val(data.id);
+				$("input[name=customerName]").val(data.name);
+				$("input[name=pickaddress]").val(data.address);
+
+				console.log(data);
+			})
+
+		});
+
+
+
 	});
 </script>
 </head>
