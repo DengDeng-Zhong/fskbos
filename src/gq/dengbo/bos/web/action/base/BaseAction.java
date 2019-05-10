@@ -1,13 +1,16 @@
 package gq.dengbo.bos.web.action.base;
 
+import com.gyf.crm.service.CustomerService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import gq.dengbo.bos.model.PageBean;
+import gq.dengbo.bos.service.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -22,6 +25,21 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 
     //模型对象
     protected T model;
+
+    //==========抽取service================
+    @Autowired
+    protected IDecidedzoneService decidedzoneService;
+    @Autowired
+    protected IRegionService regionService;
+    @Autowired
+    protected IStaffService staffService;
+    @Autowired
+    protected ISubareaService subareaService;
+    @Autowired
+    protected IUserService userService;
+    @Autowired
+    protected CustomerService customerService;
+
 
     //=============分页查询返回json数据=========
     protected int page;

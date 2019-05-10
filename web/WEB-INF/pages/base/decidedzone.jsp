@@ -49,12 +49,13 @@
 
 		if (selectedRows.length == 1){
 			$('#customerWindow').window('open');
+			var decidedzoneId = selectedRows[0].id;
 
-			//给隐藏定区id赋值
-			$("#customerDecidedZoneId").val(selectedRows[0].id);
+
+			$("#customerDecidedZoneId").val(decidedzoneId);//选中的 给隐藏定区id赋值
 			console.log($("#customerDecidedZoneId").val());
 			//显示未关联的客户
-			var url='http://localhost:8080/decidedzoneAction_findnoassociationCustomers';
+			var url='http://localhost:8080/decidedzoneAction_findnoassociationCustomers.action';
 			$.post(url,function (data) {
 				//清空数据
 				$("#noassociationSelect").empty();
@@ -70,6 +71,22 @@
 
 			});
 
+			//显示已关联的客户
+			url='http://localhost:8080/decidedzoneAction_findhasassociationCustomers.action';
+			$.post(url,{id:decidedzoneId},function (data) {
+				//清空数据
+				$("#associationSelect").empty();
+				//便利数据
+				for (var i = 0; i < data.length; i++) {
+					//取一行数据
+					var rowData = data[i];
+
+					//动态给selected标签添加数据
+					var option = '<option value="'+rowData.id+'">'+rowData.name+'</option>';
+					$("#associationSelect").append(option);
+				}
+
+			});
 		} else{
 			$.messager.alert('提示','未选中定区','error');
 		}
@@ -196,6 +213,8 @@
 		});
 
 		$("#associationBtn").click(function () {
+			//把右边的select都设置为选中状态
+			$("#associationSelect option").attr('selected','selected');
 			$("#customerForm").submit();
 		});
 	});

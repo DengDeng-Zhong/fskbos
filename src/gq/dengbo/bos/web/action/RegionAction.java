@@ -37,8 +37,7 @@ public class RegionAction extends BaseAction<Region>{
         return null;
     }
 
-    @Autowired
-    private IRegionService regionService;
+
 
     //==================上传回的文件==========
     private File excelFile;

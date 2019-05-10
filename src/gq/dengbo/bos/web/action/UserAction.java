@@ -17,8 +17,7 @@ public class UserAction extends BaseAction<User> {
     //创建日志对象
     Logger logger = Logger.getLogger(UserAction.class);
 
-    @Autowired
-    private IUserService userService;
+
 
     public String login() {
         //1.获取参数

@@ -17,8 +17,7 @@ public class StaffAction extends BaseAction<Staff> {
     //创建日志对象
     Logger logger = Logger.getLogger(StaffAction.class);
 
-    @Autowired
-    private IStaffService staffService;
+
 
     @Override
     public String save() {

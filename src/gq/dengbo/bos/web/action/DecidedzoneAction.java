@@ -20,9 +20,6 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
         this.subareaId = subareaId;
     }
 
-    @Autowired
-    private IDecidedzoneService decidedzoneService;
-
     @Override
     public String save() {
         System.out.println("参数1:"+getModel());
@@ -66,18 +63,23 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 
     }
 
+    //==================获取关连定区的客户信息=========
+    public void findhasassociationCustomers() throws IOException {
+        List<Customer> list = customerService.findhasassociationCustomers(getModel().getId());
+        resopnseJson(list,new String[]{});
+    }
+
     //===============未关联定区的客户信息===========
 
-    @Autowired
-    private CustomerService customerService;
+
     public void findnoassociationCustomers() throws IOException {
         List<Customer> customers = customerService.findnoassociationCustomers();
         resopnseJson(customers,new String[]{});
     }
 
     //===========关联客户到定区============
-    //客户id
-    private Integer[] customerIds;
+
+    private Integer[] customerIds;//客户id
 
     public void setCustomerIds(Integer[] customerIds) {
         this.customerIds = customerIds;
@@ -90,4 +92,6 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
 
         return SUCCESS;
     }
+
+
 }
