@@ -3,10 +3,13 @@ package gq.dengbo.bos.web.action;
 import gq.dengbo.bos.model.Decidedzone;
 import gq.dengbo.bos.service.IDecidedzoneService;
 import gq.dengbo.bos.web.action.base.BaseAction;
+import gq.dengbo.crm.domain.Customer;
+import gq.dengbo.crm.service.CustomerService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.util.List;
 
 public class DecidedzoneAction extends BaseAction<Decidedzone> {
 
@@ -45,7 +48,6 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
         return null;
     }
 
-
     public void pageQuery() throws IOException {
         /*
             1.接收参数,page[当前页] rows[每页显示多少条]
@@ -62,5 +64,14 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
         //返回json数据
         resopnseJson(pb,new String[]{"currentPage", "pageSize", "detachedCriteria"});
 
+    }
+
+    //===============未关联定区的客户信息===========
+
+    @Autowired
+    private CustomerService customerService;
+    public void findnoassociationCustomers() throws IOException {
+        List<Customer> customers = customerService.findnoassociationCustomers();
+        resopnseJson(customers,new String[]{});
     }
 }
