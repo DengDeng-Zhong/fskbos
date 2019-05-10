@@ -44,7 +44,35 @@
 	}
 	
 	function doAssociations(){
-		$('#customerWindow').window('open');
+		//判断是否有选中定区
+		var selectedRows = $("#grid").datagrid('getSelections');
+
+		if (selectedRows.length == 1){
+			$('#customerWindow').window('open');
+
+			//给隐藏定区id赋值
+			$("#customerDecidedZoneId").val(selectedRows[0].id);
+			console.log($("#customerDecidedZoneId").val());
+			//显示未关联的客户
+			var url='http://localhost:8080/decidedzoneAction_findnoassociationCustomers';
+			$.post(url,function (data) {
+				//清空数据
+				$("#noassociationSelect").empty();
+				//便利数据
+				for (var i = 0; i < data.length; i++) {
+					//取一行数据
+					var rowData = data[i];
+
+					//动态给selected标签添加数据
+					var option = '<option value="'+rowData.id+'">'+rowData.name+'</option>';
+					$("#noassociationSelect").append(option);
+				}
+
+			});
+
+		} else{
+			$.messager.alert('提示','未选中定区','error');
+		}
 	}
 	
 	//工具栏
@@ -158,7 +186,18 @@
 		$("#save").click(function(){
 			$("#addDecidedzoneForm").submit();
 		});
-		
+
+
+		$("#toRight").click(function () {
+			$("#associationSelect").append($("#noassociationSelect option:selected"));
+		});
+		$("#toLeft").click(function () {
+			$("#noassociationSelect").append($("#associationSelect option:selected"));
+		});
+
+		$("#associationBtn").click(function () {
+			$("#customerForm").submit();
+		});
 	});
 
 	function doDblClickRow(){
@@ -345,15 +384,17 @@
 	<!-- 关联客户窗口 -->
 	<div class="easyui-window" title="关联客户窗口" id="customerWindow" collapsible="false" closed="true" minimizable="false" maximizable="false" style="top:20px;left:200px;width: 400px;height: 300px;">
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form id="customerForm" action="${pageContext.request.contextPath }/decidedzone_assigncustomerstodecidedzone.action" method="post">
+			<form id="customerForm" action="${pageContext.request.contextPath }/decidedzoneAction_assigncustomerstodecidedzone.action" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="3">关联客户</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="hidden" name="id" id="customerDecidedZoneId" />
-							<select id="noassociationSelect" multiple="multiple" size="10"></select>
+							<input type="hidden" name="id" id="customerDecidedZoneId"  />
+							<select id="noassociationSelect" multiple="multiple" size="10">
+
+							</select>
 						</td>
 						<td>
 							<input type="button" value="》》" id="toRight"><br/>

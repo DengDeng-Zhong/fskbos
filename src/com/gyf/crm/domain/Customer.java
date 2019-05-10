@@ -1,4 +1,4 @@
-package gq.dengbo.crm.domain;
+package com.gyf.crm.domain;
 
 import java.io.Serializable;
 

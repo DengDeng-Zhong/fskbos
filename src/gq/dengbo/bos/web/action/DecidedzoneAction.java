@@ -3,8 +3,8 @@ package gq.dengbo.bos.web.action;
 import gq.dengbo.bos.model.Decidedzone;
 import gq.dengbo.bos.service.IDecidedzoneService;
 import gq.dengbo.bos.web.action.base.BaseAction;
-import gq.dengbo.crm.domain.Customer;
-import gq.dengbo.crm.service.CustomerService;
+import com.gyf.crm.domain.Customer;
+import com.gyf.crm.service.CustomerService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -73,5 +73,21 @@ public class DecidedzoneAction extends BaseAction<Decidedzone> {
     public void findnoassociationCustomers() throws IOException {
         List<Customer> customers = customerService.findnoassociationCustomers();
         resopnseJson(customers,new String[]{});
+    }
+
+    //===========关联客户到定区============
+    //客户id
+    private Integer[] customerIds;
+
+    public void setCustomerIds(Integer[] customerIds) {
+        this.customerIds = customerIds;
+    }
+
+    public String assigncustomerstodecidedzone(){
+
+
+        customerService.assignCustomersToDecidedZone(customerIds,getModel().getId());
+
+        return SUCCESS;
     }
 }

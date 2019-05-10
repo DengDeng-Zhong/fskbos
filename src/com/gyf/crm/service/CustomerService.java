@@ -1,7 +1,7 @@
-package gq.dengbo.crm.service;
+package com.gyf.crm.service;
 
 
-import gq.dengbo.crm.domain.Customer;
+import com.gyf.crm.domain.Customer;
 
 import java.util.List;
 
