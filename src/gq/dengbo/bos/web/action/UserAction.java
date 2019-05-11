@@ -27,8 +27,8 @@ public class UserAction extends BaseAction<User> {
         HttpServletRequest request = ServletActionContext.getRequest();
         String serverCheckcode = (String) request.getSession().getAttribute("key");
         String clientCheckcode = request.getParameter("checkcode");
-        System.out.println("serverCheckcode:" + serverCheckcode);
-        System.out.println("clientCheckcode:" + clientCheckcode);
+        logger.info("serverCheckcode:" + serverCheckcode);
+        logger.info("clientCheckcode:" + clientCheckcode);
         if (serverCheckcode.equalsIgnoreCase(clientCheckcode)) {
             //2.调用service
             User user = userService.login(username, password);
@@ -44,7 +44,7 @@ public class UserAction extends BaseAction<User> {
                 addActionError("登录失败,用户名或密码不正确");
             }
         } else {
-            System.out.println("验证码错误");
+            logger.info("验证码错误");
             addActionError("验证码错误");
         }
 

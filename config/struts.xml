@@ -61,5 +61,9 @@
         <action name="noticebillAction_*" class="gq.dengbo.bos.web.action.NoticebillAction" method="{1}">
             <result name="success">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
         </action>
+        <!-- 工单模块 -->
+        <action name="workordermanageAction_*" class="gq.dengbo.bos.web.action.WorkordermanageAction" method="{1}">
+<!--            <result name="success">/WEB-INF/pages/qupai/noticebill_add.jsp</result>-->
+        </action>
     </package>
 </struts>

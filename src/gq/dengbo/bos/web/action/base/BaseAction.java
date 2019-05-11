@@ -43,6 +43,8 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
     protected CustomerService customerService;
     @Autowired
     protected INoticebillService noticebillService;
+    @Autowired
+    protected IWorkordermanageService workordermanageService;
 
 
     //=============分页查询返回json数据=========
