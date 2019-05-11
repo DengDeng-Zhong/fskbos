@@ -46,11 +46,11 @@
 
 			url = '${pageContext.request.contextPath}/noticebillAction_findCustomerByTel.action';
 			$.post(url,{tel:tel},function (data) {
-
+				//自动填充数据
 				$("input[name=customerId]").val(data.id);
 				$("input[name=customerName]").val(data.name);
 				$("input[name=pickaddress]").val(data.address);
-
+				$("input[name=decidedzoneId]").val(data.decidedzone_id);
 				console.log(data);
 			})
 
@@ -72,7 +72,8 @@
 		</div>
 	</div>
 	<div region="center" style="overflow:auto;padding:5px;" border="false">
-		<form id="noticebillForm" action="" method="post">
+		<form id="noticebillForm" action="${pageContext.request.contextPath}/noticebillAction_save.action" method="post">
+			<input id="decidedzoneId" name="decidedzoneId" type="hidden"/>
 			<table class="table-edit" width="95%" align="center">
 				<tr class="title">
 					<td colspan="4">客户信息</td>

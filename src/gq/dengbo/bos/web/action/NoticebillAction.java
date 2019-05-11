@@ -1,13 +1,26 @@
 package gq.dengbo.bos.web.action;
 
 import com.gyf.crm.domain.Customer;
+import gq.dengbo.bos.model.Noticebill;
 import gq.dengbo.bos.web.action.base.BaseAction;
 
 import java.io.IOException;
 
-public class NoticebillAction extends BaseAction<Object> {
+public class NoticebillAction extends BaseAction<Noticebill> {
+
+    private String decidedzoneId;
+
+    public void setDecidedzoneId(String decidedzoneId) {
+        this.decidedzoneId = decidedzoneId;
+    }
+
     @Override
     public String save() {
+
+
+        noticebillService.save(getModel(),decidedzoneId);
+        System.out.println(getModel());
+
         return null;
     }
 
@@ -39,6 +52,6 @@ public class NoticebillAction extends BaseAction<Object> {
     public void findCustomerByTel() throws IOException {
         Customer customerByTel = customerService.findCustomerByTel(tel);
 
-        resopnseJson(customerByTel,new String[]{});
+        resopnseJson(customerByTel, new String[]{});
     }
 }

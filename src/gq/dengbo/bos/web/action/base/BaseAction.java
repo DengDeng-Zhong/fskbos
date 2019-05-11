@@ -21,7 +21,9 @@ import java.util.Collection;
 
 public abstract class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 
-    /**ModelDriven用于存储form表单请求参数*/
+    /**
+     * ModelDriven用于存储form表单请求参数
+     */
 
     //模型对象
     protected T model;
@@ -39,6 +41,8 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
     protected IUserService userService;
     @Autowired
     protected CustomerService customerService;
+    @Autowired
+    protected INoticebillService noticebillService;
 
 
     //=============分页查询返回json数据=========
@@ -52,6 +56,7 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
     public void setRows(int rows) {
         this.rows = rows;
     }
+
     //分页的模型
     protected PageBean<T> pb = new PageBean<T>();
 
@@ -84,10 +89,13 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 
     //插入数据
     public abstract String save();
+
     //修改数据
     public abstract String update();
+
     //删除数据
     public abstract String delete() throws IOException;
+
     //查找数据
     public abstract String find();
 
@@ -96,7 +104,8 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 
     /**
      * 返回json数据给客户端
-     * @param obj 转json的对象
+     *
+     * @param obj      转json的对象
      * @param excludes 排除的属性
      * @throws IOException
      */
@@ -107,10 +116,10 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
         HttpServletResponse response = ServletActionContext.getResponse();
         response.setHeader("content-type", "text/json;charset=utf-8");
         //如果是集合,使用JSONArray来进行转换
-        if (obj instanceof Collection){
-            JSONArray jsonArray = JSONArray.fromObject(obj,config);
+        if (obj instanceof Collection) {
+            JSONArray jsonArray = JSONArray.fromObject(obj, config);
             response.getWriter().write(jsonArray.toString());
-        }else {
+        } else {
             JSONObject jsonObject = JSONObject.fromObject(obj, config);
             response.getWriter().write(jsonObject.toString());
         }
@@ -119,6 +128,7 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 
     /**
      * 返回一个字符串
+     *
      * @param message
      * @throws IOException
      */

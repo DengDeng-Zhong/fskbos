@@ -11,6 +11,9 @@
       <mapping resource="gq/dengbo/bos/model/Region.hbm.xml"/>
       <mapping resource="gq/dengbo/bos/model/Staff.hbm.xml"/>
       <mapping resource="gq/dengbo/bos/model/Subarea.hbm.xml"/>
+    <mapping resource="gq/dengbo/bos/model/Noticebill.hbm.xml"/>
+    <mapping resource="gq/dengbo/bos/model/Workbill.hbm.xml"/>
+    <mapping resource="gq/dengbo/bos/model/Workordermanage.hbm.xml"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
