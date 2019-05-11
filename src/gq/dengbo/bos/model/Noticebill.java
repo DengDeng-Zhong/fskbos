@@ -4,15 +4,7 @@ import java.sql.Date;
 
 public class Noticebill {
     private String id;
-    private Staff staff;
 
-    public Staff getStaff() {
-        return staff;
-    }
-
-    public void setStaff(Staff staff) {
-        this.staff = staff;
-    }
 
     private String customerId;
     private String customerName;
@@ -28,7 +20,15 @@ public class Noticebill {
     private String remark;
     private String ordertype;
     private User user;
+    private Staff staff;
 
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
     public User getUser() {
         return user;
     }

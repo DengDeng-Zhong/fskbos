@@ -5,13 +5,13 @@ import java.util.Objects;
 
 public class Workbill {
     private String id;
-    private String noticebillId;
+    private Noticebill noticebill;//业务通知单外键
     private String type;
     private String pickstate;
     private Timestamp buildtime;
     private Integer attachbilltimes;
     private String remark;
-    private String staffId;
+    private Staff staff;
 
     public String getId() {
         return id;
@@ -19,14 +19,6 @@ public class Workbill {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getNoticebillId() {
-        return noticebillId;
-    }
-
-    public void setNoticebillId(String noticebillId) {
-        this.noticebillId = noticebillId;
     }
 
     public String getType() {
@@ -69,31 +61,31 @@ public class Workbill {
         this.remark = remark;
     }
 
-    public String getStaffId() {
-        return staffId;
+    public Noticebill getNoticebill() {
+        return noticebill;
     }
 
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
+    public void setNoticebill(Noticebill noticebill) {
+        this.noticebill = noticebill;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Workbill workbill = (Workbill) o;
-        return Objects.equals(id, workbill.id) &&
-                Objects.equals(noticebillId, workbill.noticebillId) &&
-                Objects.equals(type, workbill.type) &&
-                Objects.equals(pickstate, workbill.pickstate) &&
-                Objects.equals(buildtime, workbill.buildtime) &&
-                Objects.equals(attachbilltimes, workbill.attachbilltimes) &&
-                Objects.equals(remark, workbill.remark) &&
-                Objects.equals(staffId, workbill.staffId);
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, noticebillId, type, pickstate, buildtime, attachbilltimes, remark, staffId);
+    public String toString() {
+        return "Workbill{" +
+                "id='" + id + '\'' +
+                ", type='" + type + '\'' +
+                ", pickstate='" + pickstate + '\'' +
+                ", buildtime=" + buildtime +
+                ", attachbilltimes=" + attachbilltimes +
+                ", remark='" + remark + '\'' +
+                '}';
     }
 }

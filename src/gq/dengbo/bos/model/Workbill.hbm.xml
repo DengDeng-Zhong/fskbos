@@ -1,17 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
     <class name="gq.dengbo.bos.model.Workbill" table="qp_workbill" schema="bos">
-        <id name="id" column="id"/>
-        <property name="noticebillId" column="noticebill_id"/>
+        <id name="id" column="id">
+            <generator class="uuid"></generator>
+        </id>
+        <!-- 配置业务通知单的外键 -->
+        <many-to-one name="noticebill" class="gq.dengbo.bos.model.Noticebill" column="noticebill_id">
+        </many-to-one>
         <property name="type" column="type"/>
         <property name="pickstate" column="pickstate"/>
         <property name="buildtime" column="buildtime"/>
         <property name="attachbilltimes" column="attachbilltimes"/>
         <property name="remark" column="remark"/>
-        <property name="staffId" column="staff_id"/>
+        <!-- 员工的外键 -->
+        <many-to-one name="staff" class="gq.dengbo.bos.model.Staff" column="staff_id">
+        </many-to-one>
     </class>
 </hibernate-mapping>
