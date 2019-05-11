@@ -1,23 +1,25 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE hibernate-configuration PUBLIC
-    "-//Hibernate/Hibernate Configuration DTD//EN"
-    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-  <session-factory>
-    <property name="connection.url">jdbc:mysql://localhost:3306/bos</property>
-    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <mapping resource="gq/dengbo/bos/model/User.hbm.xml"/>
-      <mapping resource="gq/dengbo/bos/model/Decidedzone.hbm.xml"/>
-      <mapping resource="gq/dengbo/bos/model/Region.hbm.xml"/>
-      <mapping resource="gq/dengbo/bos/model/Staff.hbm.xml"/>
-      <mapping resource="gq/dengbo/bos/model/Subarea.hbm.xml"/>
-    <mapping resource="gq/dengbo/bos/model/Noticebill.hbm.xml"/>
-    <mapping resource="gq/dengbo/bos/model/Workbill.hbm.xml"/>
-    <mapping resource="gq/dengbo/bos/model/Workordermanage.hbm.xml"/>
-      <!-- <property name="connection.username"/> -->
-    <!-- <property name="connection.password"/> -->
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/bos</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <mapping resource="gq/dengbo/bos/model/User.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Decidedzone.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Region.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Staff.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Subarea.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Noticebill.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Workbill.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Workordermanage.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Function.hbm.xml"/>
+        <mapping resource="gq/dengbo/bos/model/Role.hbm.xml"/>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
 
-    <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
-  </session-factory>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
 </hibernate-configuration>

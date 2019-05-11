@@ -4,26 +4,30 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <!-- 调试模式 -->
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="true"/>
 
     <package name="basicstruts2" extends="struts-default">
 
 
+        <!--        1种       -->
         <!-- 声明一个登录拦截器 -->
-        <interceptors>
-            <interceptor name="BOSLoginInterceptor" class="gq.dengbo.bos.web.interceptor.BOSLoginInterceptor">
-                <param name="excludeMethods">login</param>
-            </interceptor>
-            <!-- 声明一个拦截器组 -->
-            <interceptor-stack name="myDefaultStack">
-<!--                为了测试方便先把登录拦截器关闭-->
-<!--                <interceptor-ref name="BOSLoginInterceptor"/>-->
-                <interceptor-ref name="defaultStack"/>
-            </interceptor-stack>
-        </interceptors>
+        <!--        <interceptors>-->
+        <!--            <interceptor name="BOSLoginInterceptor" class="gq.dengbo.bos.web.interceptor.BOSLoginInterceptor">-->
+        <!--                <param name="excludeMethods">login</param>-->
+        <!--            </interceptor>-->
+        <!--            &lt;!&ndash; 声明一个拦截器组 &ndash;&gt;-->
+        <!--            <interceptor-stack name="myDefaultStack">-->
+        <!--&lt;!&ndash;                为了测试方便先把登录拦截器关闭&ndash;&gt;-->
+        <!--&lt;!&ndash;                <interceptor-ref name="BOSLoginInterceptor"/>&ndash;&gt;-->
+        <!--                <interceptor-ref name="defaultStack"/>-->
+        <!--            </interceptor-stack>-->
+        <!--        </interceptors>-->
 
-        <!-- 修改默认的拦截器 -->
-        <default-interceptor-ref name="myDefaultStack"/>
+        <!--         修改默认的拦截器 -->
+        <!--        <default-interceptor-ref name="myDefaultStack"/>-->
+
+
+        <!--        2种       -->
 
         <!-- 配置全局的结果视图 -->
         <global-results>
@@ -63,7 +67,7 @@
         </action>
         <!-- 工单模块 -->
         <action name="workordermanageAction_*" class="gq.dengbo.bos.web.action.WorkordermanageAction" method="{1}">
-<!--            <result name="success">/WEB-INF/pages/qupai/noticebill_add.jsp</result>-->
+            <!--            <result name="success">/WEB-INF/pages/qupai/noticebill_add.jsp</result>-->
         </action>
     </package>
 </struts>

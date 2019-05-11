@@ -75,4 +75,23 @@
         <property name="serviceUrl" value="http://localhost:8888/crm/remoting/customer"/>
     </bean>
 
+    <!-- 配置shiro相关的过滤器 -->
+    <!-- 1.配置id为shiroFilter的工厂bean
+         注意:id的名字要和过滤器的一样
+    -->
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"></property>
+        <!-- 配置登录页面 -->
+        <property name="loginUrl" value="/login.jsp"></property>
+    </bean>
+    <!-- 2.配置shiro的安全管理者 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!-- 配置一个realm对象 -->
+        <property name="realm" ref="realm"></property>
+    </bean>
+    <!-- 3.配置一个realm对象,这个对象要实现写一个实现类 -->
+    <bean id="realm" class="gq.dengbo.bos.web.realm.BosRealm">
+
+    </bean>
 </beans>
