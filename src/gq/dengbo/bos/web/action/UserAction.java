@@ -3,7 +3,12 @@ package gq.dengbo.bos.web.action;
 import com.sun.istack.internal.logging.Logger;
 import gq.dengbo.bos.model.User;
 import gq.dengbo.bos.service.IUserService;
+import gq.dengbo.bos.utils.MD5Utils;
 import gq.dengbo.bos.web.action.base.BaseAction;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -18,7 +23,6 @@ public class UserAction extends BaseAction<User> {
     Logger logger = Logger.getLogger(UserAction.class);
 
 
-
     public String login() {
         //1.获取参数
         String username = getModel().getUsername();
@@ -30,21 +34,30 @@ public class UserAction extends BaseAction<User> {
         logger.info("serverCheckcode:" + serverCheckcode);
         logger.info("clientCheckcode:" + clientCheckcode);
         if (serverCheckcode.equalsIgnoreCase(clientCheckcode)) {
-            //2.调用service
-            User user = userService.login(username, password);
+            /**
+             * 使用shiro，就不再使用userService的login方法来登录
+             * 而是使用Subject的login方法
+             */
+            //获取一个Subject
+            Subject subject = SecurityUtils.getSubject();
 
-            //3.判断登录状态
-            if (user != null) {
-                System.out.println("登录成功");
-                request.getSession().setAttribute("loginUser", user);
-                addActionMessage("登录成功");
+            //创建一个Token,这个对象存着用户名和密码
+            UsernamePasswordToken token = new UsernamePasswordToken(username, MD5Utils.text2md5(password));
+
+            try {
+                subject.login(token);//内部就会执行Realm的代码
+
+                //登录成功【把用户对象存在session】
+                User loginUser = (User) subject.getPrincipal();
+                subject.getSession().setAttribute("loginUser",loginUser);
+
                 return "home";
-            } else {
-                System.out.println("登录失败,用户名或密码不正确");
-                addActionError("登录失败,用户名或密码不正确");
+            }catch (AuthenticationException e){
+                e.printStackTrace();//登录失败会抛出异常
+                addActionError("登录失败，用户名密码不正确");
             }
+
         } else {
-            logger.info("验证码错误");
             addActionError("验证码错误");
         }
 
@@ -84,7 +97,7 @@ public class UserAction extends BaseAction<User> {
 
     public String editPassword() throws IOException {
 
-        HttpServletRequest  request = ServletActionContext.getRequest();
+        HttpServletRequest request = ServletActionContext.getRequest();
         HttpServletResponse response = ServletActionContext.getResponse();
         //1.获取密码
         String newPwd = getModel().getPassword();
@@ -96,7 +109,7 @@ public class UserAction extends BaseAction<User> {
 
         //4.返回一个数据
 
-        response.setHeader("content-type","text/json;charset=utf-8");
+        response.setHeader("content-type", "text/json;charset=utf-8");
         response.getWriter().write("{\"success\":\"1\"}");
 
         return NONE;

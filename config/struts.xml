@@ -27,7 +27,9 @@
         <!--        <default-interceptor-ref name="myDefaultStack"/>-->
 
 
-        <!--        2种       -->
+        <!--     2种       -->
+
+
 
         <!-- 配置全局的结果视图 -->
         <global-results>
