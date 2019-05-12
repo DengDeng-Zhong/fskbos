@@ -8,33 +8,16 @@
 
     <package name="basicstruts2" extends="struts-default">
 
-
-        <!--        1种       -->
-        <!-- 声明一个登录拦截器 -->
-        <!--        <interceptors>-->
-        <!--            <interceptor name="BOSLoginInterceptor" class="gq.dengbo.bos.web.interceptor.BOSLoginInterceptor">-->
-        <!--                <param name="excludeMethods">login</param>-->
-        <!--            </interceptor>-->
-        <!--            &lt;!&ndash; 声明一个拦截器组 &ndash;&gt;-->
-        <!--            <interceptor-stack name="myDefaultStack">-->
-        <!--&lt;!&ndash;                为了测试方便先把登录拦截器关闭&ndash;&gt;-->
-        <!--&lt;!&ndash;                <interceptor-ref name="BOSLoginInterceptor"/>&ndash;&gt;-->
-        <!--                <interceptor-ref name="defaultStack"/>-->
-        <!--            </interceptor-stack>-->
-        <!--        </interceptors>-->
-
-        <!--         修改默认的拦截器 -->
-        <!--        <default-interceptor-ref name="myDefaultStack"/>-->
-
-
-        <!--     2种       -->
-
-
-
         <!-- 配置全局的结果视图 -->
         <global-results>
             <result name="login" type="redirect">/login.jsp</result>
+            <result name="unauthenticatedUrl" type="redirect">/authorizing.jsp</result>
         </global-results>
+
+        <!-- 抛出异常来到指定的页面 -->
+        <global-exception-mappings>
+            <exception-mapping exception="org.apache.shiro.authz.UnauthenticatedException" result="unauthenticatedUrl"></exception-mapping>
+        </global-exception-mappings>
 
         <!-- 配置需要进行权限控制的页面访问的规则 -->
         <action name="page_*_*">

@@ -17,8 +17,8 @@ public class BosRealm extends AuthorizingRealm {
      */
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//        info.addStringPermission("staff");
-        info.addRole("staff");
+        info.addStringPermission("staff");
+//        info.addRole("staff");
 
         return info;
     }

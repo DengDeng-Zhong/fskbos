@@ -70,10 +70,18 @@ public abstract class BaseAction<T> extends ActionSupport implements ModelDriven
 
     public BaseAction() {
         //1.获得父类【BaseAction<T> 】的参数化类型【<T>、<T,V>】
-        ParameterizedType genericSuperclass = (ParameterizedType) this.getClass().getGenericSuperclass();
+        ParameterizedType pt = null;
+        if (this.getClass().getGenericSuperclass() instanceof ParameterizedType){
+            System.out.println("1111111111111111");
+            pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+
+        }else{
+            pt = (ParameterizedType) this.getClass().getSuperclass().getGenericSuperclass();
+            System.out.println("2222222222222222");
+        }
 
         //2.获得类的参数化类型的数组
-        Type[] types = genericSuperclass.getActualTypeArguments();
+        Type[] types = pt.getActualTypeArguments();
 
         //3.获取泛型类第一个参数的类型
         @SuppressWarnings("unchecked")

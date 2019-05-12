@@ -88,7 +88,6 @@
             <value>
                 /validatecode.jsp* = anon
                 /userAction_login.action = anon
-                /page_base_staff.action = roles["staff"]
                 /* = authc
             </value>
         </property>
@@ -102,6 +101,17 @@
 
     <!-- 3.配置一个realm对象,这个对象要实现写一个实现类 -->
     <bean id="realm" class="gq.dengbo.bos.web.realm.BosRealm">
-
     </bean>
+
+    <!-- 4开启shiro注解来配置权限 需要声明一个代理和切面 -->
+    <!-- 自动代理 -->
+    <bean id="defaultAdvisorAutoProxyCreator"
+          class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <!-- 强制使用cglib为Action创建代理对象 -->
+        <property name="proxyTargetClass" value="true"></property>
+    </bean>
+    <!-- 切面类 -->
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"/>
+
+    <bean class="gq.dengbo.bos.web.action.StaffAction" scope="prototype"></bean>
 </beans>
