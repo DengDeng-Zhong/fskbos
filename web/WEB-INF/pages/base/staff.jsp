@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -250,7 +251,9 @@
      maximizable="false" style="top:20px;left:200px">
     <div region="north" style="height:31px;overflow:hidden;" split="false" border="false">
         <div class="datagrid-toolbar">
+            <shiro:hasPermission name="staff">
             <a id="save" icon="icon-save" href="#" class="easyui-linkbutton" plain="true">保存</a>
+            </shiro:hasPermission>
         </div>
     </div>
 

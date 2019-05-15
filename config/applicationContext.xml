@@ -105,13 +105,13 @@
 
     <!-- 4开启shiro注解来配置权限 需要声明一个代理和切面 -->
     <!-- 自动代理 -->
-    <bean id="defaultAdvisorAutoProxyCreator"
+    <!--<bean id="defaultAdvisorAutoProxyCreator"
           class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
-        <!-- 强制使用cglib为Action创建代理对象 -->
+        &lt;!&ndash; 强制使用cglib为Action创建代理对象 &ndash;&gt;
         <property name="proxyTargetClass" value="true"></property>
     </bean>
-    <!-- 切面类 -->
+    &lt;!&ndash; 切面类 &ndash;&gt;
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"/>
 
-    <bean class="gq.dengbo.bos.web.action.StaffAction" scope="prototype"></bean>
+    <bean class="gq.dengbo.bos.web.action.StaffAction" scope="prototype"></bean>-->
 </beans>

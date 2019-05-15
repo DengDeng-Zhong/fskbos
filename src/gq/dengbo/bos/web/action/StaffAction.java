@@ -4,7 +4,9 @@ import com.sun.istack.internal.logging.Logger;
 import gq.dengbo.bos.model.Staff;
 import gq.dengbo.bos.service.IStaffService;
 import gq.dengbo.bos.web.action.base.BaseAction;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,7 +21,7 @@ public class StaffAction extends BaseAction<Staff> {
     Logger logger = Logger.getLogger(StaffAction.class);
 
 
-    @RequiresPermissions("staff")
+//    @RequiresPermissions("staff")
     @Override
     public String save() {
         System.out.println(getModel());
@@ -45,6 +47,10 @@ public class StaffAction extends BaseAction<Staff> {
 
     @Override
     public String delete() throws IOException {
+        Subject subject = SecurityUtils.getSubject();
+        subject.checkPermission("delete");
+
+
         //1.获取删除的id
 
         //2.调用service
